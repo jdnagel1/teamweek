@@ -1,15 +1,12 @@
-# _Pizza_
+# _Work Out Suggester_
 
-#### By _**Jake**_
+#### By _**Jake**_ _**Jordan**_
 
 ## Description
 
 |Description|Input|Output|
 |-|-|-|
-|Start Order|'Start Order''|New order begins|
-|Select Size|'Extra Large'|Additional $5 added
-|Select Toppings|'Pepperoni'|Additional $1 added
-|Checkout Displays Final Price|Extra Large with Pepperoni|$10 +$4 +$1 = $15 total|
+|Select Workout Goals|'Lose Weight''|Cardio Workout|
 
 
 
@@ -31,7 +28,7 @@ _JS_
 
 ### License
 
-Copyright <2019> <Jake>
+Copyright <2019> <Jake, Jordan>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
