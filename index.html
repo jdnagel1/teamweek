@@ -11,10 +11,61 @@
 </head>
 <body>
   <!-- <img id="workOutPic" src="img/workout.png" alt="picture of workout"> -->
-    <div class="container">
-      <!-- <div class="jumbotron"> -->
-        <h1>Work Out Suggester</h1>
-      <button id="workoutButton" type="button" class="btn btn-primary">Get Plan</button>
+  <div class="container"> 
+    <form id="workout-form">
+    <div class="jumbotron">
+        <h1>Let us help you create a workout plan</h1> 
     </div>
+         <div class="form-group" required="required">
+            <h2>When is your birthday?</h2>
+            <input type="month" name="bdaymonth">
+        </div>
+        <div class="form-group" required="required">
+            <h2>What is your height (in inches)?</h2>
+            <input type="number" name="heigth" min="0" max="100">
+        </div>
+        <div class="form-group" required="required">
+            <h2>What is your weight (in pounds)?</h2>
+            <input type="number" name="heigth" min="0" max="100">
+        </div>
+        <div class="form-group" required="required">
+            <h2>What is your gender?</h2>
+            <input type="radio" name="masculine" value=1> Masculine<br>
+            <input type="radio" name="femenine" value=2> Feminine.<br>
+            <input type="radio" name="non-binary" value=3> Non-binary, non-conforming, or rather not say.<br>
+        </div>
+        <div class="form-group">
+            <h2>What is your primary goal?</h2>                    
+            <input type="radio" name="goals" value="weightLoss"> Weight Loss.<br>
+            <input type="radio" name="goals" value="weightGain"> Muscle Gain.<br>
+        </div>
+        <div class="form-group">
+            <h2>What is your secondary goal?</h2>                    
+            <input type="radio" name="goals" value="bmi"> Lower my BMI.<br>
+            <input type="radio" name="goals" value="cardio"> Cardio health.<br>
+            <input type="radio" name="goals" value="flexability"> Increase flexability.<br>
+        </div>
+        <div class="form-group">
+            <h2>What is your experience working out?</h2>
+            <input type="radio" name="beginner" value=1> I'm a beginner<br>
+            <input type="radio" name="experienced" value=2> I work out frequently already.<br>
+        </div>
+        <div class="form-group" required="required">
+            <h2>How many days per week are you able to commit to working out?</h2>
+            <input type="radio" name="one" value=1> One day per week.<br>
+            <input type="radio" name="two" value=2> Two days per week.<br>
+            <input type="radio" name="three" value=3> Three days per week.<br>
+            <input type="radio" name="four" value=4> Four days per week.<br>
+            <input type="radio" name="five" value=5> Five days per week.<br>
+        </div>
+        <button type="submit">Suggest a workout plan</button>
+    </form>
+    <span id="results">
+        <div class="wrapper">
+            <h1>In order to meet your goal, we suggest</h1>
+            <p>some stuff</p>
+        </div>
+    </span>
+</div>
   </body>
 </html>
