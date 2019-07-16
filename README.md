@@ -6,7 +6,7 @@
 
 |Description|Input|Output|
 |-|-|-|
-|Select Workout Goals|'Lose Weight''|Cardio Workout|
+|Select Workout Goals|'Lose Weight'|Cardio Workout|
 
 
 
