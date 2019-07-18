@@ -17,8 +17,8 @@
             </div>
                 <form id="workout-form">
                     <div class="form-group" required="required">
-                        <label>When is your birthday?</label>
-                        <input class="form-control" type="month" name="bdaymonth">
+                        <label for="born">When is your birthday?</label>
+                        <input id="born" class="form-control" type="date">
                     </div>
                     <div class="form-group" required="required">
                         <label for="height">What is your height?</label>
@@ -46,36 +46,59 @@
                     <label>What is your primary goal?</label>                    
                     <div class="radio">
                         <label>
-                            <input type="radio" name="goals" value="weightLoss">
+                            <input type="radio" name="primary-goals" value="weightLoss">
                             Weight loss
                         </label>
                     </div>
                     <div class="radio">
                         <label>
-                            <input type="radio" name="goals" value="musclegain">
+                            <input type="radio" name="primary-goals" value="musclegain">
                             Muscle gain
                         </label>
                     </div>
                     
-                    <div class="form-group">
-                        <label>What is your secondary goal?</label>                    
-                        <input class="form-control" type="radio" name="goals" value="bmi"> Lower my BMI.<br>
-                        <input class="form-control" type="radio" name="goals" value="cardio"> Cardio health.<br>
-                        <input class="form-control" type="radio" name="goals" value="flexability"> Increase flexability.<br>
+                    <label>What is your secondary goal?</label>                    
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="secondary-goals" value="BMI">
+                            Lower my BMI
+                        </label>
                     </div>
-                    <div class="form-group">
-                        <label>What is your experience working out?</label>
-                        <input class="form-control" type="radio" name="beginner" value=1> I'm a beginner<br>
-                        <input class="form-control" type="radio" name="experienced" value=2> I work out frequently already.<br>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="secondary-goals" value="cario">
+                            Cardio health
+                        </label>
                     </div>
-                    <div class="form-group" required="required">
-                        <label>How many days per week are you able to commit to working out?</label>
-                        <input class="form-control" type="radio" name="one" value=1> One day per week.<br>
-                        <input class="form-control" type="radio" name="two" value=2> Two days per week.<br>
-                        <input class="form-control" type="radio" name="three" value=3> Three days per week.<br>
-                        <input class="form-control" type="radio" name="four" value=4> Four days per week.<br>
-                        <input class="form-control" type="radio" name="five" value=5> Five days per week.<br>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="secondary-goals" value="flexability">
+                            Increase flexability
+                        </label>
                     </div>
+                    
+                    
+                    <label>What is your experience working out?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="experience" value=1>
+                            I'm a beginner
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="experience" value=2>
+                            I work out frequently already.
+                        </label>
+                    </div>
+                        
+                    <label>How many days per week are you able to commit to working out?</label><br>
+                    <select class="form control" id="time-commitment">
+                        <option value=3>3 days per week</option>
+                        <option value=4>4 days per week</option>
+                        <option value=5>5 days per week</option>
+                    </select>
+                    <br>
                     <button type="submit" class="btn btn-primary">Suggest a workout plan</button>
                 </form>
             <div id="results">
