@@ -1,6 +1,6 @@
 # _Work Out Suggester_
 
-#### By _**Jake,**_ _**Jordan,**_ _**and_Tom**_
+#### By _**Jake,**_ _**Jordan,**_ _**and Tom**_
 
 ## Description
 
