@@ -1,20 +1,1266 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="css/styles.css" rel="stylesheet" type="text/css">
-  <script src="js/jquery-3.4.1.js"></script>
-  <script src="js/scripts.js"></script>
-  <link rel="shortcut icon" type="image/png" href="img/.png">
-  <title>Work Out Suggester</title>
-</head>
-<body>
-  <!-- <img id="workOutPic" src="img/workout.png" alt="picture of workout"> -->
-    <div class="container">
-      <!-- <div class="jumbotron"> -->
-        <h1>Work Out Suggester</h1>
-      <button id="workoutButton" type="button" class="btn btn-primary">Get Plan</button>
-    </div>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
+        <script src="js/jquery-3.4.1.js"></script>
+        <script src="js/scripts.js"></script>
+        <!-- <link rel="shortcut icon" type="image/png" href="img/.png"> -->
+        <title>Work Out Suggester</title>
+    </head>
+    <body>
+    <!-- <img id="workOutPic" src="img/workout.png" alt="picture of workout"> -->
+        <div class="container"> 
+            <div class="jumbotron">
+                <h1>Let us help you create a workout plan</h1> 
+            </div>
+                <form id="workout-form">
+                    <div class="form-group" required="required">
+                        <label for="born">When is your birthday?</label>
+                        <input id="born" class="form-control" type="date">
+                    </div>
+                    <div class="form-group" required="required">
+                        <label for="height">What is your height?</label>
+                        <input class="form-control" type="number" name="heigth" min="3" max="7" placeholder="feet">
+                        <input class="form-control" type="number" name="heigth" min="0" max="11" placeholder="inches">
+                    </div>
+                    <div class="form-group" required="required">
+                        <label>What is your weight (in pounds)?</label>
+                        <input class="form-control" type="number" name="heigth">
+                    </div>
+                    <label>What is your gender?</label>
+                    <div class="radio" required="required">
+                        <label>
+                            <input type="radio" name="gender" value=1>
+                            Male
+                        </label>
+                    </div>
+                    <div class="radio" required="required">
+                        <label>
+                            <input type="radio" name="gender" value=2>
+                            Female
+                        </label>
+                    </div>
+                    
+                    <label>What is your primary goal?</label>                    
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="primary-goal-weightLoss" value="weightLoss">
+                            Weight loss
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="primary-goal-muscleGain" value="musclegain">
+                            Muscle gain
+                        </label>
+                    </div>
+                    
+                    <label>What is your secondary goal?</label>                    
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="secondary-goals" value="BMI">
+                            Lower my BMI
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="secondary-goals" value="cario">
+                            Cardio health
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="secondary-goals" value="flexability">
+                            Increase flexability
+                        </label>
+                    </div>
+                    
+                    
+                    <label>What is your experience working out?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="experience" value=1>
+                            I'm a beginner
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="experience" value=2>
+                            I work out frequently already.
+                        </label>
+                    </div>
+                        
+                    <label>How many days per week are you able to commit to working out?</label><br>
+                    <select class="form control" id="time-commitment">
+                        <option value=3>3 days per week</option>
+                        <option value=4>4 days per week</option>
+                        <option value=5>5 days per week</option>
+                    </select>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Suggest a workout plan</button>
+                </form>
+                <br>
+                <div id="fivedayresults">
+                    <h1>In order to meet your 5 day goal, we suggest</h1>
+                    <h4>Day 1</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">Example Picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <div id="muscle-gain">
+                                <tr>
+                                    <th scope="row">Arms: Biceps</th>
+                                    <td>Barbell Curl</td>
+                                    <td>20/15/12/10/8</td>
+                                    <td><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curl-1441211036.jpg" alt="barbell curl example"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Arms: Triceps</th>
+                                    <td>Close grip barbell bench press</td>
+                                    <td>20/15/12/10/8</td>
+                                    <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Arms: Biceps</th>
+                                    <td>Machine Preacher Curls</td>
+                                    <td>20/15/12/10</td>
+                                    <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Arms: Triceps</th>
+                                    <td>Dip Machine</td>
+                                    <td>20/15/12/10</td>
+                                    <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Arms: Biceps</th>
+                                    <td>Cross Body hammer curls</td>
+                                    <td>20/15/12</td>
+                                    <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                                </tr>
+                            </div>
+                            <div id="weight-loss">
+                                <tr>
+                                    <th scope="row">Arms: Triceps</th>
+                                    <td>Tricep push down</td>
+                                    <td>20/15/12</td>
+                                    <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Arms: Biceps</th>
+                                    <td>Alternate hammer curl</td>
+                                    <td>20/15/12</td>
+                                    <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Arms: Triceps</th>
+                                    <td>Skull crusher</td>
+                                    <td>20/15/12</td>
+                                    <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Arms: Biceps</th>
+                                    <td>Close grip EZ bar curl</td>
+                                    <td>20/15/12</td>
+                                    <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Arms: Triceps</th>
+                                    <td>Cable laying tricep extension</td>
+                                    <td>20/15/12</td>
+                                    <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                                </tr>
+                            </div>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                
+                    <h4>Day 2</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">example picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Lying Leg Curl</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://wiki.onlinenow.co.nz/wp-content/uploads/2016/10/maxicam-lying-leg-curl-18.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Front barbell squat</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Seated Leg Curl</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Barbell squat</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Romanian deadlift</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg extension</td>
+                                <td>20/15/12</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Good morning</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Dumbbell Lunges</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Floor hamstring raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Barbell standing calf raise</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Seated calf raise</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Calf press on the leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise (pigeon toe)</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h4>Day 3</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">example picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Berbell incline bench press</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curl-1441211036.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Dumbbell bench press</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Dumbell flys</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Dumbbell incline bench press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Barbell bench press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Oblique crunches</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Crunches (legs on exercise ball)</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Decline oblique crunch</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Toe touches</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Hand over-head crunch</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Barbell deadlift</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Bent over barbell row</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>V-bar pull-down</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Smith machine bent ober row</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Wide grip lat pull-down</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h4>Day 4</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">example picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Lying Leg Curl</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curl-1441211036.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Front barbell squat</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Seated Leg Curl</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Barbell squat</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Romanian deadlift</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg extension</td>
+                                <td>20/15/12</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Good morning</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Dumbbell Lunges</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Floor hamstring raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Barbell standing calf raise</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Seated calf raise</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Calf press on the leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise (pigeon toe)</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h4>Day 5</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">example picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Shoulders</th>
+                                <td>Barbell shoulder press</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curl-1441211036.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Traps</th>
+                                <td>Barbell shrugs</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shoulders</th>
+                                <td>Dumbell lateral raise</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Traps</th>
+                                <td>Dumbbell shrug</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shoulders</th>
+                                <td>Standing military press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Traps</th>
+                                <td>Snatch shrug</td>
+                                <td>20/15/12</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shoulders</th>
+                                <td>Dumbbell shoulder press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Traps</th>
+                                <td>Smith machine shrug</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Shoulders</th>
+                                <td>Front incline dumbbell raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Traps</th>
+                                <td>Behind the back barbell shrugs</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                </div>
+
+                <div id="fourdayresults">
+                    <h1>In order to meet your 4 day goal, we suggest</h1>
+                    <h4>Day 1</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">Example Picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Barbell Curl</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curl-1441211036.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Close grip barbell bench press</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Machine Preacher Curls</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Dip Machine</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Cross Body hammer curls</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Tricep push down</td>
+                                <td>20/15/12</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Alternate hammer curl</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Skull crusher</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Close grip EZ bar curl</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Cable laying tricep extension</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h4>Day 2</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">example picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Lying Leg Curl</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://wiki.onlinenow.co.nz/wp-content/uploads/2016/10/maxicam-lying-leg-curl-18.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Front barbell squat</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Seated Leg Curl</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Barbell squat</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Romanian deadlift</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg extension</td>
+                                <td>20/15/12</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Good morning</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Dumbbell Lunges</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Floor hamstring raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Barbell standing calf raise</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Seated calf raise</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Calf press on the leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise (pigeon toe)</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h4>Day 3</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">example picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Berbell incline bench press</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curl-1441211036.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Dumbbell bench press</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Dumbell flys</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Dumbbell incline bench press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Barbell bench press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Oblique crunches</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Crunches (legs on exercise ball)</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Decline oblique crunch</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Toe touches</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Hand over-head crunch</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Barbell deadlift</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Bent over barbell row</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>V-bar pull-down</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Smith machine bent ober row</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Wide grip lat pull-down</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h4>Day 4</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">example picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Lying Leg Curl</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curl-1441211036.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Front barbell squat</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Seated Leg Curl</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Barbell squat</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Romanian deadlift</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg extension</td>
+                                <td>20/15/12</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Good morning</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Dumbbell Lunges</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Floor hamstring raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Barbell standing calf raise</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Seated calf raise</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Calf press on the leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise (pigeon toe)</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <div id="threedayresults">
+                    <h1>In order to meet your 3 day goal, we suggest</h1>
+                    <h4>Day 1</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">Example Picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Barbell Curl</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curl-1441211036.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Close grip barbell bench press</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Machine Preacher Curls</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Dip Machine</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Cross Body hammer curls</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Tricep push down</td>
+                                <td>20/15/12</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Alternate hammer curl</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Skull crusher</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Biceps</th>
+                                <td>Close grip EZ bar curl</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Arms: Triceps</th>
+                                <td>Cable laying tricep extension</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h4>Day 2</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">example picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Lying Leg Curl</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://wiki.onlinenow.co.nz/wp-content/uploads/2016/10/maxicam-lying-leg-curl-18.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Front barbell squat</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Seated Leg Curl</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Barbell squat</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Romanian deadlift</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg extension</td>
+                                <td>20/15/12</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Good morning</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Dumbbell Lunges</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Hamstrings</th>
+                                <td>Floor hamstring raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Quadriceps</th>
+                                <td>Leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Barbell standing calf raise</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Seated calf raise</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Calf press on the leg press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise (pigeon toe)</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Legs: Calves</th>
+                                <td>Standing calf raise</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                    <h4>Day 3</h4>
+                    <table class="table table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Muscle Group</th>
+                                <th scope="col">Exercise</th>
+                                <th scope="col">Sets and Reps</th>
+                                <th scope="col">example picture</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Berbell incline bench press</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bicep-curl-1441211036.jpg" alt="barbell curl example"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Dumbbell bench press</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://cdn-ami-drupal.heartyhosting.com/sites/muscleandfitness.com/files/close-grip-bench-press-triceps-weights-main.jpg" alt="close grip barbell bench press"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Dumbell flys</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.muscleandfitness.com/sites/muscleandfitness.com/mensfitness/files/styles/photo_gallery_full/public/30-best-arm-exercises-ez-bar-preacher-curl.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Dumbbell incline bench press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://images-na.ssl-images-amazon.com/images/I/512dKf03bkL._SX425_.jpg"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: chest</th>
+                                <td>Barbell bench press</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://dailyspot-v2.s3-accelerate.amazonaws.com/feed/83/image/standing_cross-body_dumbbell_hammer_curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Oblique crunches</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Crunches (legs on exercise ball)</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Decline oblique crunch</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Toe touches</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: abs</th>
+                                <td>Hand over-head crunch</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Barbell deadlift</td>
+                                <td>20/15/12/10/8</td>
+                                <td><img src="http://www.medguidance.com/images/1HN00404/pull-down.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Bent over barbell row</td>
+                                <td>20/15/12/10</td>
+                                <td><img src="https://valleyfitnessnutrition.com/wp-content/uploads/2014/03/Alternate-Hammer-Curl.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>V-bar pull-down</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://www.darkironfitness.com/wp-content/uploads/2018/03/Skull-Crusher.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Smith machine bent ober row</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://i.pinimg.com/736x/69/af/2e/69af2e75b4f57c1206ee24cc004be9f7.jpg" alt=""></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Torso: back</th>
+                                <td>Wide grip lat pull-down</td>
+                                <td>20/15/12</td>
+                                <td><img src="https://seannal.com/images/cable-skull-crusher.jpg" alt=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
