@@ -1,7 +1,4 @@
 $(document).ready(function() {
-    
-    
-    
     $("form#workout-form").submit(function(event){
         var commitment = $("#time-commitment").val();
         debugger;
@@ -14,5 +11,11 @@ $(document).ready(function() {
             $("#threedayresults").show();
         };
         event.preventDefault();
+        $("input:radio[name=primary-goal-weightLoss]:checked").each(function() {
+            $("#muscle-gain").hide();
+        });
+        $("input:radio[name=primary-goal-muscleGain]:checked").each(function() {
+            $("#weight-loss").hide();
+        });
     });
 });
