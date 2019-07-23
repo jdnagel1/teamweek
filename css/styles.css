@@ -5,3 +5,6 @@ img {
   height: 200px;
   width: auto;
 }
+#fivedayresults, #fourdayresults, #threedayresults {
+  display: none;
+}
