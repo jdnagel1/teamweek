@@ -1,4 +1,4 @@
-# _Work Out Suggester_
+# _Work Out Insisterer_
 
 #### By _**Jake,**_ _**Jordan,**_ _**and Tom**_
 
@@ -7,7 +7,7 @@
 
 |Description|Input|Output|
 |-|-|-|
-|Select Workout Goals|'Lose Weight'|Cardio Workout|
+|Select Workout Goals|'Lower BMI'|Lower BMI Workout|
 
 
 
