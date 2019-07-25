@@ -1,4 +1,4 @@
-# _Work Out Suggester_
+# _Work Out Insisterer_
 
 #### By _**Jake,**_ _**Jordan,**_ _**and Tom**_
 
