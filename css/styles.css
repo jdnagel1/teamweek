@@ -8,3 +8,7 @@ img {
 #fivedayresults, #fourdayresults, #threedayresults {
   display: none;
 }
+
+#carousel-example-generic {
+  margin: 20px;
+}
